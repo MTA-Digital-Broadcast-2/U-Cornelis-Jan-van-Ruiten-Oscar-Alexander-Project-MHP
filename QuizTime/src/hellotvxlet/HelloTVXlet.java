@@ -26,7 +26,10 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
     private HStaticText lblTotalPoints;
 
     private int intPoints = 0;
-    private int i = -1; //First right = i++ 
+    private int i = 7; //First right = i++ 
+    private int j = 0;
+    private int random;
+    
     
    private String[][] arrayQuestion = { 
         {"How many planets does the solar system count?", "8", "9","7","6","Right","Wrong","Wrong","Wrong"},
@@ -209,10 +212,11 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
            lblQuestion.setVisible(false);
            lblTotalPoints.setVisible(true);
            lblPoints.setLocation(320,230);
-           intPoints = -1;
-           i = 0;
+           intPoints = 0;
+           i = 7;
            btnAnswerD.setTextContent("Retry", HState.NORMAL_STATE);
            btnAnswerD.setActionCommand("Right");
+           btnAnswerD.requestFocus();
      }
     public void createQuestion(int i){
             
@@ -263,17 +267,21 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
             btnAnswerA.requestFocus();
             intPoints++;
             lblPoints.setTextContent(Integer.toString(intPoints), HState.NORMAL_STATE);
-            System.out.println(intPoints);
-            i++;
+            i--;
             
-            if(i == 8){                  
+            if(i == -1){                  
                 endGame();
-            }else{createQuestion(i);}
+            }else{
+                //random = (int)(Math.random() * i);
+               
+                createQuestion(i);
+                }
+            }
             
             
 
     
-        }
+        
         else if(e.getActionCommand().equals("stop"))
         {
             endGame();
