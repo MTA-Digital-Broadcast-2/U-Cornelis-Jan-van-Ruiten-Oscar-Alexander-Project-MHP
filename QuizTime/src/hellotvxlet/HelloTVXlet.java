@@ -202,6 +202,16 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
       */      
         if(e.getActionCommand().equals("Right"))
         {
+            lblQuestion.setVisible(true);
+            btnAnswerA.setVisible(true);
+            btnAnswerB.setVisible(true);
+            btnAnswerC.setVisible(true);
+            btnAnswerD.setVisible(true);
+            lblPoints.setLocation(600, 480);
+            lblTotalPoints.setVisible(false);
+            btnClose.setVisible(true);
+            scene.setBackground( new DVBColor(0, 0, 0, 200) );
+            scene.setBackgroundMode( HVisible.BACKGROUND_FILL );
             btnAnswerA.requestFocus();
             intPoints++;
             lblPoints.setTextContent(Integer.toString(intPoints), HState.NORMAL_STATE);
@@ -211,8 +221,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
             switch (i)
             {
                 case 1:
-                    scene.repaint();
-                     
                     lblQuestion.setTextContent("What is the distance between The Earth and The Moon (Lunar Distance)?", HState.NORMAL_STATE);
                     btnAnswerA.setTextContent("3844000km", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("384400km", HState.NORMAL_STATE);
@@ -227,7 +235,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                 
                 case 2:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("Wich planet is the hottest?", HState.NORMAL_STATE);
                     btnAnswerA.setTextContent("Earth", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("Mercury", HState.NORMAL_STATE);
@@ -242,7 +249,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                     
                 case 3:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("Wich planet is the biggest?", HState.NORMAL_STATE);
                     btnAnswerA.setTextContent("Mars", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("Saturn", HState.NORMAL_STATE);
@@ -257,7 +263,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                 
                 case 4:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("Wich planet is the farest from the sun?", HState.NORMAL_STATE);                    
                     btnAnswerA.setTextContent("Jupiter", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("Earth", HState.NORMAL_STATE);
@@ -272,7 +277,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                 
                 case 5:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("Wich is the brightest object in the sky?", HState.NORMAL_STATE);                     
                     btnAnswerA.setTextContent("Venus", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("Mars", HState.NORMAL_STATE);
@@ -287,7 +291,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                     
                 case 6:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("Who was the first astronaut to walk on the moon?", HState.NORMAL_STATE);                     
                     btnAnswerA.setTextContent("Buzz Aldrin", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("Andrei Borisenko", HState.NORMAL_STATE);
@@ -302,7 +305,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                     
                 case 7:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("What year was the challenger disaster?", HState.NORMAL_STATE);                     
                     btnAnswerA.setTextContent("1989", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("1987", HState.NORMAL_STATE);
@@ -317,7 +319,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                 
                 case 8:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("What country had the first space station?", HState.NORMAL_STATE);                                         
                     btnAnswerA.setTextContent("America", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("Russia", HState.NORMAL_STATE);
@@ -332,7 +333,6 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
                     
                 case 9:
 
-                    scene.repaint();
                     lblQuestion.setTextContent("Which was the first planet seen by a telescope?", HState.NORMAL_STATE);                     
                     btnAnswerA.setTextContent("Mars", HState.NORMAL_STATE);
                     btnAnswerB.setTextContent("Uranus", HState.NORMAL_STATE);
@@ -363,17 +363,24 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
         }
         else if(e.getActionCommand().equals("stop"))
         {
+           scene.setBackground( new DVBColor(0, 0, 0, 200) );
+           scene.setBackgroundMode( HVisible.BACKGROUND_FILL ); 
            btnAnswerA.setVisible(false);
            btnAnswerB.setVisible(false);
            btnAnswerC.setVisible(false);
-           btnAnswerD.setVisible(false);
+           btnAnswerD.setVisible(true);
            btnClose.setVisible(false);
            lblQuestion.setVisible(false);
            lblTotalPoints.setVisible(true);
            lblPoints.setLocation(320,230);
+           intPoints = -1;
+           i = 0;
+           btnAnswerD.setTextContent("Retry", HState.NORMAL_STATE);
+           btnAnswerD.setActionCommand("Right");
         }
         else if(e.getActionCommand().equals("Intro"))
         {
+
             btnStart.setVisible(false);
             lblIntro.setVisible(false);
             btnAnswerA.setVisible(true);
@@ -384,11 +391,15 @@ public class HelloTVXlet implements Xlet, HActionListener, ResourceClient
             lblPoints.setVisible(true);
             lblQuestion.setVisible(true);
             scene.setVisible(true);
+           lblPoints.setLocation(600, 480);
+            lblTotalPoints.setVisible(false);
 
             btnAnswerA.requestFocus();
         }
         else if(e.getActionCommand().equals("Wrong"))
         {
+            scene.setBackground( new DVBColor(255, 0, 0, 200) );
+            scene.setBackgroundMode( HVisible.BACKGROUND_FILL );
             intPoints--;
             lblPoints.setTextContent(Integer.toString(intPoints), HState.NORMAL_STATE);
         }
